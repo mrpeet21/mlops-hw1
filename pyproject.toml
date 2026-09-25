@@ -1,7 +1,7 @@
 [project]
-name = "mlops-hw1"
+name = "cancer-service"
 version = "0.1.0"
-description = "Add your description here"
+description = "FastAPI service for breast cancer classification"
 readme = "README.md"
 authors = [
     { name = "mrpeet21", email = "ekaterina_petrova_a@inbox.ru" }
@@ -18,9 +18,6 @@ dependencies = [
     "uvicorn[standard]>=0.53.0",
 ]
 
-[project.scripts]
-mlops-hw1 = "mlops_hw1:main"
-
 [build-system]
 requires = ["uv_build>=0.12.10,<0.13.0"]
 build-backend = "uv_build"
@@ -30,3 +27,6 @@ dev = [
     "httpx>=0.28.1",
     "pytest>=9.1.1",
 ]
+
+[tool.uv.build-backend]
+module-name = "cancer_service"

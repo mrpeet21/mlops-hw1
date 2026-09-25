@@ -15,11 +15,20 @@ CREATE TABLE IF NOT EXISTS predictions (
     ts TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     model_version TEXT NOT NULL,
     features JSONB NOT NULL,
-    prediction INTEGER NOT NULL,
-    probability DOUBLE PRECISION NOT NULL,
+    prediction INTEGER,
+    probability DOUBLE PRECISION,
     latency_ms REAL NOT NULL,
     status_code INTEGER NOT NULL
 );
+"""
+
+
+MIGRATION_SQL = """
+ALTER TABLE predictions
+    ALTER COLUMN prediction DROP NOT NULL;
+
+ALTER TABLE predictions
+    ALTER COLUMN probability DROP NOT NULL;
 """
 
 
@@ -31,6 +40,7 @@ def init_db() -> None:
         with psycopg2.connect(settings.database_url) as conn:
             with conn.cursor() as cur:
                 cur.execute(CREATE_TABLE_SQL)
+                cur.execute(MIGRATION_SQL)
     except Exception:
         log.exception("Could not initialize database")
 
@@ -39,8 +49,8 @@ def save_prediction(
     request_id: str,
     model_version: str,
     features: dict,
-    prediction: int,
-    probability: float,
+    prediction: int | None,
+    probability: float | None,
     latency_ms: float,
     status_code: int,
 ) -> None:

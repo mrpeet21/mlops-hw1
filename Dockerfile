@@ -3,7 +3,6 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV UV_COMPILE_BYTECODE=1
-ENV PYTHONPATH=/app/src
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
