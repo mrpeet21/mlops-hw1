@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: cancer-config
 data:
-  MODEL_PATH: /app/artifacts/missing-model.joblib
+  MODEL_PATH: /app/artifacts/model.joblib
   LOG_LEVEL: INFO
