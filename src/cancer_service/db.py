@@ -40,6 +40,9 @@ def init_db() -> None:
             psycopg2.connect(settings.database_url) as conn,
             conn.cursor() as cur,
         ):
+            cur.execute(
+                "SELECT pg_advisory_xact_lock(424242)"
+            )
             cur.execute(CREATE_TABLE_SQL)
             cur.execute(MIGRATION_SQL)
     except Exception:

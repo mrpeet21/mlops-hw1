@@ -20,6 +20,12 @@ spec:
           image: cancer-service:1.0
           imagePullPolicy: IfNotPresent
 
+          envFrom:
+            - configMapRef:
+                name: cancer-config
+            - secretRef:
+                name: cancer-secret
+                
           ports:
             - containerPort: 8000
 

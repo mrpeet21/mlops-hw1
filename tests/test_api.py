@@ -3,6 +3,7 @@ def test_health(client):
 
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
+    assert response.json()["log_level"] == "INFO"
 
 
 def test_ready(client):

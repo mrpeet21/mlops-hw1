@@ -138,7 +138,10 @@ async def validation_exception_handler(
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "log_level": settings.log_level,
+    }
 
 
 @app.get("/ready")
