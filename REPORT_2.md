@@ -187,9 +187,9 @@ Pending
 
 | Проблема | Текст / симптом | Как нашли причину | Как исправили |
 |---|---|---|---|
-| `ruff` отсутствовал в окружении | `Failed to spawn: ruff` / `No such file or directory` | Команда `uv run ruff check .` не смогла запустить executable | Добавили `ruff` как dev-зависимость через `uv add --dev ruff`, обновились `pyproject.toml` и `uv.lock` |
-| Ruff нашёл старые нарушения форматирования | `I001 Import block is un-sorted` и `SIM117` | Запустили `ruff check`; он указал конкретные файлы и строки | Выполнили `ruff --fix`, вручную объединили вложенные `with`, затем `ruff` и все 11 тестов стали зелёными |
-| `build` был неправильно расположен в YAML | `Workflow runs completed with no jobs` | Проверили структуру `.github/workflows/ci.yml` и увидели, что `build:` находится вне `jobs:` | Исправили отступ: `build` разместили на одном уровне с `tests` внутри `jobs` |
+| `ruff` отсутствовал в окружении | `Failed to spawn: ruff` / `No such file or directory` | Команда `uv run ruff check .` не смогла запустить executable | Добавила `ruff` как dev-зависимость через `uv add --dev ruff`, обновились `pyproject.toml` и `uv.lock` |
+| Ruff нашёл старые нарушения форматирования | `I001 Import block is un-sorted` и `SIM117` | Запустила `ruff check`; он указал конкретные файлы и строки | Выполнила `ruff --fix`, вручную объединили вложенные `with`, затем `ruff` и все 11 тестов стали зелёными |
+| `build` был неправильно расположен в YAML | `Workflow runs completed with no jobs` | Проверила структуру `.github/workflows/ci.yml` и увидела, что `build:` находится вне `jobs:` | Исправила отступ: `build` разместила на одном уровне с `tests` внутри `jobs` |
 
 ---
 
