@@ -24,7 +24,7 @@ spec:
             - configMapRef:
                 name: cancer-config
             - secretRef:
-                name: cancer-secret-broken
+                name: cancer-secret
                 
           ports:
             - containerPort: 8000
