@@ -154,3 +154,70 @@ jobs:
             --timeout=180s
 
           kubectl get pods -o wide
+
+      - name: Smoke test
+        run: |
+          kubectl port-forward svc/cancer-service 8080:80 \
+            > /tmp/port-forward.log 2>&1 &
+
+          for i in {1..30}; do
+            if curl --fail -s http://localhost:8080/health > health.json; then
+              break
+            fi
+            sleep 2
+          done
+
+          cat health.json
+
+          python3 -c "
+          import json
+          r = json.load(open('health.json'))
+          assert r['status'] == 'ok', r
+          assert r['log_level'] == 'INFO', r
+          "
+
+          cat > good.json <<'EOF'
+          {
+            "mean_radius": 14.0,
+            "mean_texture": 20.0,
+            "mean_perimeter": 90.0,
+            "mean_area": 600.0,
+            "mean_smoothness": 0.1,
+            "mean_compactness": 0.12
+          }
+          EOF
+
+          curl --fail -s \
+            -X POST http://localhost:8080/v1/predict \
+            -H "Content-Type: application/json" \
+            -d @good.json \
+            > response.json
+
+          cat response.json
+
+          python3 -c "
+          import json
+          r = json.load(open('response.json'))
+          assert r['prediction'] in (0, 1), r
+          assert 0 <= r['probability'] <= 1, r
+          "
+
+      - name: Diagnostics
+        if: failure()
+        run: |
+          echo "===== PODS ====="
+          kubectl get pods -o wide || true
+
+          echo "===== EVENTS ====="
+          kubectl get events --sort-by=.lastTimestamp || true
+
+          for pod in $(kubectl get pods -o name); do
+            echo "===== DESCRIBE $pod ====="
+            kubectl describe "$pod" || true
+
+            echo "===== LOGS $pod ====="
+            kubectl logs "$pod" --all-containers=true --tail=200 || true
+
+            echo "===== PREVIOUS LOGS $pod ====="
+            kubectl logs "$pod" --all-containers=true --previous --tail=200 || true
+          done
