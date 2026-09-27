@@ -5,7 +5,6 @@ import psycopg2
 
 from cancer_service.config import settings
 
-
 log = logging.getLogger(__name__)
 
 
@@ -37,10 +36,15 @@ def init_db() -> None:
         return
 
     try:
-        with psycopg2.connect(settings.database_url) as conn:
-            with conn.cursor() as cur:
-                cur.execute(CREATE_TABLE_SQL)
-                cur.execute(MIGRATION_SQL)
+        with (
+            psycopg2.connect(settings.database_url) as conn,
+            conn.cursor() as cur,
+        ):
+            cur.execute(
+                "SELECT pg_advisory_xact_lock(424242)"
+            )
+            cur.execute(CREATE_TABLE_SQL)
+            cur.execute(MIGRATION_SQL)
     except Exception:
         log.exception("Could not initialize database")
 
@@ -58,30 +62,32 @@ def save_prediction(
         return
 
     try:
-        with psycopg2.connect(settings.database_url) as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO predictions (
-                        request_id,
-                        model_version,
-                        features,
-                        prediction,
-                        probability,
-                        latency_ms,
-                        status_code
-                    )
-                    VALUES (%s, %s, %s::jsonb, %s, %s, %s, %s)
-                    """,
-                    (
-                        request_id,
-                        model_version,
-                        json.dumps(features),
-                        prediction,
-                        probability,
-                        latency_ms,
-                        status_code,
-                    ),
+        with (
+            psycopg2.connect(settings.database_url) as conn,
+            conn.cursor() as cur,
+        ):
+            cur.execute(
+                """
+                INSERT INTO predictions (
+                    request_id,
+                    model_version,
+                    features,
+                    prediction,
+                    probability,
+                    latency_ms,
+                    status_code
                 )
+                VALUES (%s, %s, %s::jsonb, %s, %s, %s, %s)
+                """,
+                (
+                    request_id,
+                    model_version,
+                    json.dumps(features),
+                    prediction,
+                    probability,
+                    latency_ms,
+                    status_code,
+                ),
+            )
     except Exception:
         log.exception("Could not save prediction")

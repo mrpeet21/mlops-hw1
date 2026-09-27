@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cancer-config
+data:
+  MODEL_PATH: /app/artifacts/model.joblib
+  LOG_LEVEL: INFO

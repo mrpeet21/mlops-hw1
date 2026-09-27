@@ -1,6 +1,6 @@
-from contextlib import asynccontextmanager
 import time
 import uuid
+from contextlib import asynccontextmanager
 
 import joblib
 import pandas as pd
@@ -102,7 +102,7 @@ async def validation_exception_handler(
         if not isinstance(payload, dict):
             payload = {"payload": payload}
 
-    except Exception:
+    except ValueError:
         raw_body = (
             await request.body()
         ).decode("utf-8", errors="replace")
@@ -138,7 +138,10 @@ async def validation_exception_handler(
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "log_level": settings.log_level,
+    }
 
 
 @app.get("/ready")
