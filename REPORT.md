@@ -146,7 +146,7 @@ Docker Compose поднимает:
 Для запроса с `422` модель не вызывается, поэтому поля `prediction`
 и `probability` имеют SQL-значение `NULL`.
 
-![PostgreSQL](docs/postgres.png)
+![PostgreSQL](docs/postgres.jpg)
 
 
 ---
@@ -197,7 +197,7 @@ Deployment содержит:
 Таким образом, значения около 900 ms на первоначальных скриншотах не
 являются типичной latency сервиса.
 
-![Latency](docs/latency.jpg)
+![Latency](docs/latency.png)
 
 ---
 
