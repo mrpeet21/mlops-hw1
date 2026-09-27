@@ -2,7 +2,6 @@ import statistics
 
 import httpx
 
-
 URL = "http://localhost:8000/v1/predict"
 
 PAYLOAD = {
