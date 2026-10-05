@@ -42,7 +42,8 @@ spec:
               mountPath: /mlflow
       volumes:
         - name: mlflow-data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: mlflow-data
 ---
 apiVersion: v1
 kind: Service
@@ -55,3 +56,14 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mlflow-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
