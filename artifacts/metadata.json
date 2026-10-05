@@ -1,0 +1,25 @@
+{
+  "model_name": "cancer-classifier",
+  "registry_version": "3",
+  "run_id": "b9c2224b554e48a09f5ff7e957540b0d",
+  "features": [
+    "mean radius",
+    "mean texture",
+    "mean perimeter",
+    "mean area",
+    "mean smoothness",
+    "mean compactness"
+  ],
+  "threshold": 0.5,
+  "class_names": {
+    "0": "malignant",
+    "1": "benign"
+  },
+  "probability_class": 1,
+  "probability_class_name": "benign",
+  "data_md5": "5afc23b9622f8f9ffa60824f4e97d0d5",
+  "gate_metric": "f1_malignant",
+  "gate_score": 0.9,
+  "min_gain": 0.01,
+  "gate_passed": true
+}
