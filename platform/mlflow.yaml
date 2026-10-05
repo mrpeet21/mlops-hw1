@@ -24,7 +24,7 @@ spec:
             - --port=5000
             - --backend-store-uri=sqlite:////mlflow/mlflow.db
             - --artifacts-destination=/mlflow/artifacts
-            - --allowed-hosts=mlflow.mlops*,mlflow.localhost*,localhost*,127.0.0.1*
+            - --allowed-hosts=mlflow*,mlflow.mlops*,mlflow.localhost*,localhost*,127.0.0.1*
             - --cors-allowed-origins=http://mlflow.localhost
           env:
             - name: MLFLOW_SERVER_ENABLE_JOB_EXECUTION
