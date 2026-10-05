@@ -3,6 +3,11 @@ import uuid
 from contextlib import asynccontextmanager
 
 import joblib
+import json
+
+import mlflow
+import mlflow.sklearn
+from mlflow import MlflowClient
 import pandas as pd
 from fastapi import (
     BackgroundTasks,
@@ -46,21 +51,68 @@ class PredictionResponse(BaseModel):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    bundle = joblib.load(settings.model_path)
+    if settings.model_name:
+        mlflow.set_tracking_uri(settings.mlflow_tracking_uri)
 
-    app.state.pipeline = bundle["pipeline"]
-    app.state.metadata = bundle["metadata"]
+        client = MlflowClient(
+            tracking_uri=settings.mlflow_tracking_uri
+        )
 
-    # Первый predict у sklearn/numpy иногда значительно медленнее
-    # последующих. Прогреваем Pipeline при запуске сервиса.
-    example_input = app.state.metadata.get("example_input")
+        version = client.get_model_version_by_alias(
+            settings.model_name,
+            "champion",
+        )
+
+        app.state.pipeline = mlflow.sklearn.load_model(
+            f"models:/{settings.model_name}@champion"
+        )
+
+        metadata_path = client.download_artifacts(
+            version.run_id,
+            "metadata.json",
+        )
+
+        with open(
+            metadata_path,
+            encoding="utf-8",
+        ) as file:
+            metadata = json.load(file)
+
+        metadata["model_version"] = str(version.version)
+
+        metadata["class_names"] = {
+            int(key): value
+            for key, value in metadata["class_names"].items()
+        }
+
+        app.state.metadata = metadata
+
+    else:
+        bundle = joblib.load(settings.model_path)
+
+        app.state.pipeline = bundle["pipeline"]
+        app.state.metadata = bundle["metadata"]
+
+        if "model_version" not in app.state.metadata:
+            app.state.metadata["model_version"] = str(
+                app.state.metadata.get(
+                    "registry_version",
+                    "local",
+                )
+            )
+
+    example_input = app.state.metadata.get(
+        "example_input"
+    )
 
     if example_input:
         warmup_frame = pd.DataFrame(
             [example_input]
         )[app.state.metadata["features"]]
 
-        app.state.pipeline.predict_proba(warmup_frame)
+        app.state.pipeline.predict_proba(
+            warmup_frame
+        )
 
     init_db()
 
@@ -141,8 +193,10 @@ def health():
     return {
         "status": "ok",
         "log_level": settings.log_level,
+        "model_version": app.state.metadata[
+            "model_version"
+        ],
     }
-
 
 @app.get("/ready")
 def ready():

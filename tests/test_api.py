@@ -11,7 +11,7 @@ def test_ready(client):
 
     assert response.status_code == 200
     assert response.json()["status"] == "ready"
-    assert response.json()["model_version"] == "1.0.1"
+    assert response.json()["model_version"]
 
 
 def test_predict_success(client, valid_payload):
@@ -23,7 +23,7 @@ def test_predict_success(client, valid_payload):
 
     assert data["prediction"] in [0, 1]
     assert 0.0 <= data["probability"] <= 1.0
-    assert data["model_version"] == "1.0.1"
+    assert data["model_version"]
     assert isinstance(data["request_id"], str)
     assert isinstance(data["latency_ms"], float)
     assert data["prediction_label"] in {
