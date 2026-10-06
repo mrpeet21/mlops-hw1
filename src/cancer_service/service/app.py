@@ -1,13 +1,13 @@
+import asyncio
+import json
 import time
 import uuid
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 import joblib
-import json
-
 import mlflow
 import mlflow.sklearn
-from mlflow import MlflowClient
 import pandas as pd
 from fastapi import (
     BackgroundTasks,
@@ -19,6 +19,7 @@ from fastapi import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from mlflow import MlflowClient
 from pydantic import BaseModel, ConfigDict, Field
 from starlette.background import BackgroundTask
 
@@ -72,11 +73,11 @@ async def lifespan(app: FastAPI):
             "metadata.json",
         )
 
-        with open(
-            metadata_path,
+        metadata_text = await asyncio.to_thread(
+            Path(metadata_path).read_text,
             encoding="utf-8",
-        ) as file:
-            metadata = json.load(file)
+        )
+        metadata = json.loads(metadata_text)
 
         metadata["model_version"] = str(version.version)
 
