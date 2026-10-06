@@ -1,8 +1,13 @@
+import asyncio
+import json
 import time
 import uuid
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 import joblib
+import mlflow
+import mlflow.sklearn
 import pandas as pd
 from fastapi import (
     BackgroundTasks,
@@ -14,6 +19,7 @@ from fastapi import (
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from mlflow import MlflowClient
 from pydantic import BaseModel, ConfigDict, Field
 from starlette.background import BackgroundTask
 
@@ -46,21 +52,68 @@ class PredictionResponse(BaseModel):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    bundle = joblib.load(settings.model_path)
+    if settings.model_name:
+        mlflow.set_tracking_uri(settings.mlflow_tracking_uri)
 
-    app.state.pipeline = bundle["pipeline"]
-    app.state.metadata = bundle["metadata"]
+        client = MlflowClient(
+            tracking_uri=settings.mlflow_tracking_uri
+        )
 
-    # Первый predict у sklearn/numpy иногда значительно медленнее
-    # последующих. Прогреваем Pipeline при запуске сервиса.
-    example_input = app.state.metadata.get("example_input")
+        version = client.get_model_version_by_alias(
+            settings.model_name,
+            settings.model_alias,
+        )
+
+        app.state.pipeline = mlflow.sklearn.load_model(
+            f"models:/{settings.model_name}@{settings.model_alias}"
+        )
+
+        metadata_path = client.download_artifacts(
+            version.run_id,
+            "metadata.json",
+        )
+
+        metadata_text = await asyncio.to_thread(
+            Path(metadata_path).read_text,
+            encoding="utf-8",
+        )
+        metadata = json.loads(metadata_text)
+
+        metadata["model_version"] = str(version.version)
+
+        metadata["class_names"] = {
+            int(key): value
+            for key, value in metadata["class_names"].items()
+        }
+
+        app.state.metadata = metadata
+
+    else:
+        bundle = joblib.load(settings.model_path)
+
+        app.state.pipeline = bundle["pipeline"]
+        app.state.metadata = bundle["metadata"]
+
+        if "model_version" not in app.state.metadata:
+            app.state.metadata["model_version"] = str(
+                app.state.metadata.get(
+                    "registry_version",
+                    "local",
+                )
+            )
+
+    example_input = app.state.metadata.get(
+        "example_input"
+    )
 
     if example_input:
         warmup_frame = pd.DataFrame(
             [example_input]
         )[app.state.metadata["features"]]
 
-        app.state.pipeline.predict_proba(warmup_frame)
+        app.state.pipeline.predict_proba(
+            warmup_frame
+        )
 
     init_db()
 
@@ -137,15 +190,17 @@ async def validation_exception_handler(
 
 
 @app.get("/health")
-def health():
+async def health():
     return {
         "status": "ok",
         "log_level": settings.log_level,
+        "model_version": app.state.metadata[
+            "model_version"
+        ],
     }
 
-
 @app.get("/ready")
-def ready():
+async def ready():
     if getattr(app.state, "pipeline", None) is None:
         raise HTTPException(
             status_code=503,

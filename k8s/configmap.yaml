@@ -4,4 +4,7 @@ metadata:
   name: cancer-config
 data:
   MODEL_PATH: /app/artifacts/model.joblib
+  MODEL_NAME: cancer-classifier
+  MODEL_ALIAS: champion
+  MLFLOW_TRACKING_URI: http://mlflow:5000
   LOG_LEVEL: INFO

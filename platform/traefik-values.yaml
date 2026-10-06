@@ -1,0 +1,7 @@
+ports:
+  web:
+    hostPort: 80
+
+service:
+  spec:
+    type: ClusterIP

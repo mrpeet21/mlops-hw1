@@ -10,11 +10,13 @@ requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.141.1",
     "joblib>=1.6.0",
+    "mlflow>=3.16.1",
     "pandas>=3.0.6",
     "psycopg2-binary>=2.9.13",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
     "scikit-learn>=1.9.1",
+    "skops>=0.16.0",
     "uvicorn[standard]>=0.53.0",
 ]
 
@@ -24,6 +26,7 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "dvc>=3.67.1",
     "httpx>=0.28.1",
     "pytest>=9.1.1",
     "ruff>=0.16.9",

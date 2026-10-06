@@ -33,25 +33,28 @@ spec:
             httpGet:
               path: /health
               port: 8000
-            failureThreshold: 30
+            timeoutSeconds: 5
+            failureThreshold: 90
             periodSeconds: 5
 
           livenessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: 8000
+            timeoutSeconds: 5
             periodSeconds: 10
+            failureThreshold: 6
 
           readinessProbe:
             httpGet:
               path: /ready
               port: 8000
+            timeoutSeconds: 5
             periodSeconds: 5
 
           resources:
             requests:
               cpu: "100m"
-              memory: "128Mi"
+              memory: "256Mi"
             limits:
               cpu: "500m"
               memory: "512Mi"
