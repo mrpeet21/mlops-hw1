@@ -139,6 +139,7 @@ jobs:
       - name: Deploy PostgreSQL
         run: |
           kubectl apply -f k8s/postgres.yaml
+          kubectl rollout restart deployment/postgres
           kubectl rollout status deployment/postgres --timeout=180s
 
       - name: Deploy cancer service
