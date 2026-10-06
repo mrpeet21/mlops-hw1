@@ -189,7 +189,7 @@ async def validation_exception_handler(
 
 
 @app.get("/health")
-def health():
+async def health():
     return {
         "status": "ok",
         "log_level": settings.log_level,
@@ -199,7 +199,7 @@ def health():
     }
 
 @app.get("/ready")
-def ready():
+async def ready():
     if getattr(app.state, "pipeline", None) is None:
         raise HTTPException(
             status_code=503,
