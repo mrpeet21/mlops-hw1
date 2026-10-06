@@ -60,11 +60,11 @@ async def lifespan(app: FastAPI):
 
         version = client.get_model_version_by_alias(
             settings.model_name,
-            "champion",
+            settings.model_alias,
         )
 
         app.state.pipeline = mlflow.sklearn.load_model(
-            f"models:/{settings.model_name}@champion"
+            f"models:/{settings.model_name}@{settings.model_alias}"
         )
 
         metadata_path = client.download_artifacts(

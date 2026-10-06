@@ -81,6 +81,8 @@ jobs:
         with:
           context: .
           push: true
+          platforms: linux/amd64
+          provenance: false
           tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -89,7 +91,7 @@ jobs:
     name: deploy
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, kind]
 
     permissions:
       contents: read
@@ -98,21 +100,19 @@ jobs:
     env:
       IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.sha }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      KIND_CLUSTER: mlops-hw1
+      INGRESS_HOST: cancer.localhost
+      INGRESS_URL: http://mlops-hw1-control-plane
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install kind
+      - name: Show runner and cluster
         run: |
-          curl -Lo kind https://kind.sigs.k8s.io/dl/v0.30.0/kind-linux-amd64
-          chmod +x kind
-          sudo mv kind /usr/local/bin/kind
-
-      - name: Create kind cluster
-        run: |
-          kind create cluster --name mlops-ci --wait 120s
-          kubectl cluster-info
+          echo "Runner name: ${{ runner.name }}"
+          echo "KIND_CLUSTER=$KIND_CLUSTER"
+          kubectl get nodes
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -124,26 +124,30 @@ jobs:
       - name: Load image into kind
         run: |
           docker pull "$IMAGE_NAME"
-          kind load docker-image "$IMAGE_NAME" --name mlops-ci
+          kind load docker-image "$IMAGE_NAME" --name "$KIND_CLUSTER"
 
-      - name: Create secrets
+      - name: Create or update secrets
         run: |
           kubectl create secret generic postgres-secret \
-            --from-literal=POSTGRES_PASSWORD="$POSTGRES_PASSWORD"
+            --from-literal=POSTGRES_PASSWORD="$POSTGRES_PASSWORD" \
+            --dry-run=client -o yaml | kubectl apply -f -
 
           kubectl create secret generic cancer-secret \
-            --from-literal=DATABASE_URL="postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/cancer"
+            --from-literal=DATABASE_URL="postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/cancer" \
+            --dry-run=client -o yaml | kubectl apply -f -
 
       - name: Deploy PostgreSQL
         run: |
           kubectl apply -f k8s/postgres.yaml
-          kubectl rollout status deployment/postgres --timeout=120s
+          kubectl rollout status deployment/postgres --timeout=180s
 
       - name: Deploy cancer service
         run: |
           kubectl apply -f k8s/configmap.yaml
-          kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/ingress.yaml
+          kubectl apply -f k8s/hpa.yaml
 
           kubectl set image \
             deployment/cancer-service \
@@ -151,62 +155,117 @@ jobs:
 
           kubectl rollout status \
             deployment/cancer-service \
-            --timeout=180s
+            --timeout=600s
 
-          kubectl get pods -o wide
+          kubectl get pods,ingress,hpa -o wide
 
-      - name: Smoke test
+      - name: Smoke test through Ingress
         run: |
-          kubectl port-forward svc/cancer-service 8080:80 \
-            > /tmp/port-forward.log 2>&1 &
+          rm -f health.json response.json request_id.txt
 
-          for i in {1..30}; do
-            if curl --fail -s http://localhost:8080/health > health.json; then
+          for i in {1..60}; do
+            if curl --fail -sS \
+              -H "Host: $INGRESS_HOST" \
+              "$INGRESS_URL/health" \
+              -o health.json; then
               break
             fi
             sleep 2
           done
 
+          test -s health.json
           cat health.json
 
-          python3 -c "
+          python3 - <<'PY'
           import json
-          r = json.load(open('health.json'))
-          assert r['status'] == 'ok', r
-          assert r['log_level'] == 'INFO', r
-          "
 
-          cat > good.json <<'EOF'
-          {
-            "mean_radius": 14.0,
-            "mean_texture": 20.0,
-            "mean_perimeter": 90.0,
-            "mean_area": 600.0,
-            "mean_smoothness": 0.1,
-            "mean_compactness": 0.12
-          }
-          EOF
+          with open("health.json", encoding="utf-8") as f:
+              r = json.load(f)
 
-          curl --fail -s \
-            -X POST http://localhost:8080/v1/predict \
+          assert r["status"] == "ok", r
+          assert r["log_level"] == "INFO", r
+          assert str(r["model_version"]).isdigit(), (
+              "Expected MLflow registry version in /health, "
+              f"got: {r['model_version']!r}"
+          )
+
+          print("Registry model version:", r["model_version"])
+          PY
+
+          printf '%s\n' \
+            '{"mean_radius":14.0,"mean_texture":20.0,"mean_perimeter":90.0,"mean_area":600.0,"mean_smoothness":0.1,"mean_compactness":0.12}' \
+            > good.json
+
+          curl --fail -sS \
+            -X POST "$INGRESS_URL/v1/predict" \
+            -H "Host: $INGRESS_HOST" \
             -H "Content-Type: application/json" \
             -d @good.json \
-            > response.json
+            -o response.json
 
           cat response.json
 
-          python3 -c "
+          python3 - <<'PY'
           import json
-          r = json.load(open('response.json'))
-          assert r['prediction'] in (0, 1), r
-          assert 0 <= r['probability'] <= 1, r
-          "
+          import uuid
+
+          with open("health.json", encoding="utf-8") as f:
+              health = json.load(f)
+
+          with open("response.json", encoding="utf-8") as f:
+              r = json.load(f)
+
+          assert r["prediction"] in (0, 1), r
+          assert 0.0 <= r["probability"] <= 1.0, r
+          assert r["prediction_label"], r
+          assert r["probability_class"], r
+          assert str(r["model_version"]) == str(health["model_version"]), r
+
+          uuid.UUID(r["request_id"])
+
+          with open("request_id.txt", "w", encoding="utf-8") as f:
+              f.write(r["request_id"])
+
+          print("Prediction is meaningful")
+          print("request_id:", r["request_id"])
+          PY
+
+          REQUEST_ID="$(cat request_id.txt)"
+          DB_COUNT=0
+
+          for i in {1..30}; do
+            DB_COUNT="$(
+              kubectl exec deployment/postgres -- \
+                psql -U postgres -d cancer -tAc \
+                "SELECT count(*) FROM predictions WHERE request_id = '$REQUEST_ID';" \
+              | tr -d '[:space:]'
+            )"
+
+            if [ "$DB_COUNT" = "1" ]; then
+              break
+            fi
+
+            sleep 1
+          done
+
+          echo "Rows with request_id=$REQUEST_ID: $DB_COUNT"
+          test "$DB_COUNT" = "1"
+
+          kubectl exec deployment/postgres -- \
+            psql -U postgres -d cancer -c \
+            "SELECT request_id, model_version, prediction, probability, status_code
+             FROM predictions
+             WHERE request_id = '$REQUEST_ID';"
 
       - name: Diagnostics
         if: failure()
         run: |
-          echo "===== PODS ====="
-          kubectl get pods -o wide || true
+          echo "===== RUNNER ====="
+          echo "Runner name: ${{ runner.name }}"
+          echo "KIND_CLUSTER=$KIND_CLUSTER"
+
+          echo "===== RESOURCES ====="
+          kubectl get pods,svc,ingress,hpa -o wide || true
 
           echo "===== EVENTS ====="
           kubectl get events --sort-by=.lastTimestamp || true

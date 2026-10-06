@@ -55,7 +55,7 @@ def test_successful_request_is_logged(
     ) = row
 
     assert str(saved_request_id) == request_id
-    assert model_version == "1.0.1"
+    assert model_version == response_data["model_version"]
     assert features == valid_payload
     assert prediction in {0, 1}
     assert 0.0 <= probability <= 1.0
