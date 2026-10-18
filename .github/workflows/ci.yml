@@ -101,7 +101,7 @@ jobs:
       IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ github.sha }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       KIND_CLUSTER: mlops-hw1
-      INGRESS_HOST: cancer.localhost
+      INGRESS_HOST: wrong.localhost
       INGRESS_URL: http://mlops-hw1-control-plane
 
     steps:
