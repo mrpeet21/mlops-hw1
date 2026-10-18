@@ -1,0 +1,7 @@
+LAST SEEN   TYPE      REASON                         OBJECT                                   MESSAGE
+24m         Normal    SuccessfulRescale              horizontalpodautoscaler/cancer-service   New size: 4; reason: cpu resource utilization (percentage of request) above target
+24m         Normal    SuccessfulRescale              horizontalpodautoscaler/cancer-service   New size: 6; reason: cpu resource utilization (percentage of request) above target
+14m         Warning   FailedGetResourceMetric        horizontalpodautoscaler/cancer-service   failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)
+14m         Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/cancer-service   invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)
+7m5s        Normal    SuccessfulRescale              horizontalpodautoscaler/cancer-service   New size: 4; reason: All metrics below target
+6m35s       Normal    SuccessfulRescale              horizontalpodautoscaler/cancer-service   New size: 2; reason: All metrics below target

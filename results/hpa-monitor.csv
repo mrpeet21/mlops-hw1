@@ -1,0 +1,110 @@
+timestamp,current_replicas,desired_replicas,cpu_percent,target_cpu_percent,pod_resources
+2026-10-18T20:04:19+03:00,2,2,8,60,cancer-service-69d95fb5d-wjhr8   4m    182Mi   ; cancer-service-69d95fb5d-zvqcd   4m    179Mi
+2026-10-18T20:04:32+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   6m    182Mi   ; cancer-service-69d95fb5d-zvqcd   6m    179Mi
+2026-10-18T20:04:44+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   6m    182Mi   ; cancer-service-69d95fb5d-zvqcd   6m    179Mi
+2026-10-18T20:04:57+03:00,2,2,6,60,cancer-service-69d95fb5d-wjhr8   5m    182Mi   ; cancer-service-69d95fb5d-zvqcd   6m    179Mi
+2026-10-18T20:05:09+03:00,2,2,5,60,cancer-service-69d95fb5d-wjhr8   4m    182Mi   ; cancer-service-69d95fb5d-zvqcd   5m    179Mi
+2026-10-18T20:05:20+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   4m    182Mi   ; cancer-service-69d95fb5d-zvqcd   4m    179Mi
+2026-10-18T20:05:32+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   5m    182Mi   ; cancer-service-69d95fb5d-zvqcd   4m    179Mi
+2026-10-18T20:05:43+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   5m    182Mi   ; cancer-service-69d95fb5d-zvqcd   4m    179Mi
+2026-10-18T20:05:56+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   5m    182Mi   ; cancer-service-69d95fb5d-zvqcd   4m    179Mi
+2026-10-18T20:06:08+03:00,2,2,4,60,cancer-service-69d95fb5d-wjhr8   5m    182Mi   ; cancer-service-69d95fb5d-zvqcd   5m    179Mi
+2026-10-18T20:06:30+03:00,2,2,5,60,cancer-service-69d95fb5d-wjhr8   4m    182Mi   ; cancer-service-69d95fb5d-zvqcd   6m    179Mi
+2026-10-18T20:06:45+03:00,2,2,5,60,cancer-service-69d95fb5d-wjhr8   6m    182Mi   ; cancer-service-69d95fb5d-zvqcd   4m    179Mi
+2026-10-18T20:06:57+03:00,2,2,5,60,cancer-service-69d95fb5d-wjhr8   6m    182Mi   ; cancer-service-69d95fb5d-zvqcd   7m    179Mi
+2026-10-18T20:07:13+03:00,2,2,6,60,cancer-service-69d95fb5d-wjhr8   8m    182Mi   ; cancer-service-69d95fb5d-zvqcd   8m    179Mi
+2026-10-18T20:07:29+03:00,2,2,8,60,cancer-service-69d95fb5d-wjhr8   151m   183Mi   ; cancer-service-69d95fb5d-zvqcd   34m    179Mi
+2026-10-18T20:07:45+03:00,2,4,92,60,cancer-service-69d95fb5d-wjhr8   365m   194Mi   ; cancer-service-69d95fb5d-zvqcd   386m   192Mi
+2026-10-18T20:08:01+03:00,4,6,271,60,cancer-service-69d95fb5d-wjhr8   269m   193Mi   ; cancer-service-69d95fb5d-zvqcd   274m   193Mi
+2026-10-18T20:08:24+03:00,6,6,292,60,cancer-service-69d95fb5d-7nc7z   125m   14Mi    ; cancer-service-69d95fb5d-mgzvt   116m   24Mi    ; cancer-service-69d95fb5d-vwfcs   172m   22Mi    ; cancer-service-69d95fb5d-wjhr8   203m   192Mi   ; cancer-service-69d95fb5d-zvqcd   246m   193Mi
+2026-10-18T20:09:30+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:10:47+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:11:59+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:12:16+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:12:34+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:12:54+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:15:07+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:15:29+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:15:46+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:16:02+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:16:21+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:16:51+03:00,6,6,292,60,metrics unavailable
+2026-10-18T20:17:06+03:00,6,6,,60,metrics unavailable
+2026-10-18T20:17:21+03:00,6,6,,60,metrics unavailable
+2026-10-18T20:17:34+03:00,6,6,,60,metrics unavailable
+2026-10-18T20:17:51+03:00,6,6,,60,metrics unavailable
+2026-10-18T20:18:07+03:00,6,6,,60,metrics unavailable
+2026-10-18T20:18:23+03:00,6,6,,60,metrics unavailable
+2026-10-18T20:18:37+03:00,6,6,,60,cancer-service-69d95fb5d-7nc7z   74m    136Mi   ; cancer-service-69d95fb5d-hkff2   4m     129Mi   ; cancer-service-69d95fb5d-mgzvt   135m   141Mi   ; cancer-service-69d95fb5d-vwfcs   3m     136Mi   ; cancer-service-69d95fb5d-wjhr8   4m     189Mi   ; cancer-service-69d95fb5d-zvqcd   5m     192Mi
+2026-10-18T20:18:51+03:00,6,6,4,60,cancer-service-69d95fb5d-7nc7z   62m    142Mi   ; cancer-service-69d95fb5d-hkff2   71m    134Mi   ; cancer-service-69d95fb5d-mgzvt   3m     136Mi   ; cancer-service-69d95fb5d-vwfcs   174m   148Mi   ; cancer-service-69d95fb5d-wjhr8   8m     189Mi   ; cancer-service-69d95fb5d-zvqcd   5m     190Mi
+2026-10-18T20:19:11+03:00,6,6,5,60,cancer-service-69d95fb5d-7nc7z   158m   180Mi   ; cancer-service-69d95fb5d-hkff2   135m   178Mi   ; cancer-service-69d95fb5d-mgzvt   127m   178Mi   ; cancer-service-69d95fb5d-vwfcs   108m   174Mi   ; cancer-service-69d95fb5d-wjhr8   10m    187Mi   ; cancer-service-69d95fb5d-zvqcd   4m     188Mi
+2026-10-18T20:19:27+03:00,6,6,7,60,cancer-service-69d95fb5d-7nc7z   108m   187Mi   ; cancer-service-69d95fb5d-hkff2   100m   183Mi   ; cancer-service-69d95fb5d-mgzvt   124m   183Mi   ; cancer-service-69d95fb5d-vwfcs   104m   187Mi   ; cancer-service-69d95fb5d-wjhr8   5m     186Mi   ; cancer-service-69d95fb5d-zvqcd   4m     187Mi
+2026-10-18T20:19:41+03:00,6,6,4,60,cancer-service-69d95fb5d-7nc7z   205m   183Mi   ; cancer-service-69d95fb5d-hkff2   188m   180Mi   ; cancer-service-69d95fb5d-mgzvt   213m   180Mi   ; cancer-service-69d95fb5d-vwfcs   125m   182Mi   ; cancer-service-69d95fb5d-wjhr8   5m     186Mi   ; cancer-service-69d95fb5d-zvqcd   9m     187Mi
+2026-10-18T20:19:55+03:00,6,6,4,60,cancer-service-69d95fb5d-7nc7z   64m    183Mi   ; cancer-service-69d95fb5d-hkff2   49m    180Mi   ; cancer-service-69d95fb5d-mgzvt   26m    181Mi   ; cancer-service-69d95fb5d-vwfcs   116m   180Mi   ; cancer-service-69d95fb5d-wjhr8   5m     186Mi   ; cancer-service-69d95fb5d-zvqcd   6m     186Mi
+2026-10-18T20:20:11+03:00,6,6,7,60,cancer-service-69d95fb5d-7nc7z   67m    182Mi   ; cancer-service-69d95fb5d-hkff2   111m   180Mi   ; cancer-service-69d95fb5d-mgzvt   118m   182Mi   ; cancer-service-69d95fb5d-vwfcs   89m    182Mi   ; cancer-service-69d95fb5d-wjhr8   6m     186Mi   ; cancer-service-69d95fb5d-zvqcd   6m     186Mi
+2026-10-18T20:20:23+03:00,6,6,66,60,cancer-service-69d95fb5d-7nc7z   67m    182Mi   ; cancer-service-69d95fb5d-hkff2   111m   180Mi   ; cancer-service-69d95fb5d-mgzvt   118m   182Mi   ; cancer-service-69d95fb5d-vwfcs   89m    182Mi   ; cancer-service-69d95fb5d-wjhr8   6m     186Mi   ; cancer-service-69d95fb5d-zvqcd   6m     186Mi
+2026-10-18T20:20:36+03:00,6,6,66,60,cancer-service-69d95fb5d-7nc7z   65m   181Mi   ; cancer-service-69d95fb5d-hkff2   51m   180Mi   ; cancer-service-69d95fb5d-mgzvt   5m    182Mi   ; cancer-service-69d95fb5d-vwfcs   55m   182Mi   ; cancer-service-69d95fb5d-wjhr8   6m    186Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:20:48+03:00,6,6,31,60,cancer-service-69d95fb5d-7nc7z   4m    181Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi   ; cancer-service-69d95fb5d-mgzvt   8m    181Mi   ; cancer-service-69d95fb5d-vwfcs   6m    180Mi   ; cancer-service-69d95fb5d-wjhr8   13m   186Mi   ; cancer-service-69d95fb5d-zvqcd   8m    187Mi
+2026-10-18T20:21:00+03:00,6,6,7,60,cancer-service-69d95fb5d-7nc7z   6m    181Mi   ; cancer-service-69d95fb5d-hkff2   5m    180Mi   ; cancer-service-69d95fb5d-mgzvt   7m    180Mi   ; cancer-service-69d95fb5d-vwfcs   8m    180Mi   ; cancer-service-69d95fb5d-wjhr8   13m   186Mi   ; cancer-service-69d95fb5d-zvqcd   11m   187Mi
+2026-10-18T20:21:12+03:00,6,6,8,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi   ; cancer-service-69d95fb5d-mgzvt   6m    180Mi   ; cancer-service-69d95fb5d-vwfcs   5m    180Mi   ; cancer-service-69d95fb5d-wjhr8   6m    186Mi   ; cancer-service-69d95fb5d-zvqcd   6m    186Mi
+2026-10-18T20:21:23+03:00,6,6,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi   ; cancer-service-69d95fb5d-mgzvt   6m    180Mi   ; cancer-service-69d95fb5d-vwfcs   5m    180Mi   ; cancer-service-69d95fb5d-wjhr8   6m    186Mi   ; cancer-service-69d95fb5d-zvqcd   6m    186Mi
+2026-10-18T20:21:34+03:00,6,6,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-mgzvt   9m    180Mi   ; cancer-service-69d95fb5d-vwfcs   5m    180Mi   ; cancer-service-69d95fb5d-wjhr8   6m    186Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:21:44+03:00,6,6,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   5m    186Mi
+2026-10-18T20:21:55+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:22:05+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:22:17+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   4m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:22:27+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:22:38+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   4m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:22:49+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   4m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:23:01+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:23:12+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    181Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    185Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:23:23+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    181Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    185Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:23:34+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   4m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   4m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:23:44+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   8m    179Mi   ; cancer-service-69d95fb5d-wjhr8   4m    186Mi   ; cancer-service-69d95fb5d-zvqcd   4m    186Mi
+2026-10-18T20:23:55+03:00,6,6,4,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    179Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   5m    186Mi
+2026-10-18T20:24:05+03:00,6,6,4,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    179Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   5m    186Mi
+2026-10-18T20:24:16+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   4m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    179Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:24:26+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    179Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:24:37+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    179Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:24:48+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    179Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:24:59+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   4m    180Mi   ; cancer-service-69d95fb5d-vwfcs   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:25:09+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:25:20+03:00,6,6,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-mgzvt   3m    180Mi   ; cancer-service-69d95fb5d-vwfcs   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:25:31+03:00,6,4,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:25:42+03:00,4,4,3,60,cancer-service-69d95fb5d-7nc7z   4m    181Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:25:53+03:00,4,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    181Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi   ; cancer-service-69d95fb5d-wjhr8   3m    186Mi   ; cancer-service-69d95fb5d-zvqcd   3m    186Mi
+2026-10-18T20:26:04+03:00,4,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:26:14+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:26:25+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:26:35+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:26:46+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:26:58+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:27:08+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:27:20+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:27:31+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   12m   180Mi
+2026-10-18T20:27:43+03:00,2,2,7,60,cancer-service-69d95fb5d-7nc7z   6m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:27:55+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   6m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:28:06+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   6m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:28:17+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:28:27+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   8m    180Mi
+2026-10-18T20:28:38+03:00,2,2,6,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:28:50+03:00,2,2,6,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:29:01+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi
+2026-10-18T20:29:12+03:00,2,2,4,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi
+2026-10-18T20:29:22+03:00,2,2,4,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi
+2026-10-18T20:29:33+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:29:45+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:29:56+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:30:07+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:30:18+03:00,2,2,4,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:30:30+03:00,2,2,4,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:30:41+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:30:52+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   3m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:31:03+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   6m    181Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:31:13+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   6m    181Mi   ; cancer-service-69d95fb5d-hkff2   5m    180Mi
+2026-10-18T20:31:24+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:31:36+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   3m    180Mi
+2026-10-18T20:31:47+03:00,2,2,3,60,cancer-service-69d95fb5d-7nc7z   4m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:31:58+03:00,2,2,4,60,cancer-service-69d95fb5d-7nc7z   5m    180Mi   ; cancer-service-69d95fb5d-hkff2   4m    180Mi
+2026-10-18T20:32:08+03:00,2,2,4,60,cancer-service-69d95fb5d-7nc7z   5m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi
+2026-10-18T20:32:19+03:00,2,2,5,60,cancer-service-69d95fb5d-7nc7z   5m    180Mi   ; cancer-service-69d95fb5d-hkff2   6m    180Mi

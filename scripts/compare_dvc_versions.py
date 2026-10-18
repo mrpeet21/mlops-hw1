@@ -1,4 +1,12 @@
-
+# Compare DVC dataset versions on a shared test set.
+#
+# Restore v2 before running:
+# uv run dvc get . data/breast_cancer.csv \
+#     --rev 28387ee \
+#     -o /tmp/breast_cancer_v2.csv
+#
+# v3 is read from the current working directory.
+# Both models use C=0.01 and the same held-out test set.
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (

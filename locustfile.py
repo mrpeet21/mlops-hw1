@@ -1,4 +1,4 @@
-from locust import HttpUser, task, between
+from locust import HttpUser, between, task
 
 
 class CancerUser(HttpUser):
@@ -8,6 +8,7 @@ class CancerUser(HttpUser):
     def predict(self):
         self.client.post(
             "/v1/predict",
+            headers={"Host": "cancer.localhost"},
             json={
                 "mean_radius": 17.99,
                 "mean_texture": 10.38,
