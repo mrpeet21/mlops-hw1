@@ -63,7 +63,11 @@ CLASS_NAMES = {
 }
 
 
-def train_model(c: float, threshold: float) -> None:
+def train_model(
+    c: float,
+    threshold: float,
+    promote: bool = False,
+) -> None:
     df = pd.read_csv(DATA_PATH)
 
     X = df[FEATURES]
@@ -235,11 +239,13 @@ def train_model(c: float, threshold: float) -> None:
                 >= champion_score + MIN_GAIN
             )
 
-        if gate_passed:
+        promoted = bool(gate_passed and promote)
+
+        if promoted:
             client.set_registered_model_alias(
-                MODEL_NAME,
-                "champion",
-                version,
+                 MODEL_NAME,
+                 "champion",
+                 version,
             )
 
         metadata = {
@@ -256,6 +262,8 @@ def train_model(c: float, threshold: float) -> None:
             "gate_score": f1_malignant,
             "min_gain": MIN_GAIN,
             "gate_passed": bool(gate_passed),
+            "promote_requested": bool(promote),
+            "promoted": promoted,
         }
 
         ARTIFACT_DIR.mkdir(
@@ -299,37 +307,37 @@ def train_model(c: float, threshold: float) -> None:
         )
 
         if previous_champion is None:
-            print(
-                "GATE: PASS - first model, "
-                f"version {version} becomes champion"
-            )
+            print("GATE: PASS - first registered model")
 
         elif gate_passed:
             print(
-                "GATE: PASS - "
-                f"{f1_malignant:.4f} >= "
-                f"{champion_score:.4f} + "
-                f"{MIN_GAIN:.4f}"
-            )
-            print(
-                f"Champion -> version {version}"
-            )
+            "GATE: PASS - "
+            f"{f1_malignant:.4f} >= "
+            f"{champion_score:.4f} + "
+            f"{MIN_GAIN:.4f}"
+             )
 
         else:
             print(
-                "GATE: FAIL - "
-                f"{f1_malignant:.4f} < "
-                f"{champion_score:.4f} + "
-                f"{MIN_GAIN:.4f}"
-            )
-            print(
-                "Champion remains version "
-                f"{previous_champion.version}"
+            "GATE: FAIL - "
+            f"{f1_malignant:.4f} < "
+            f"{champion_score:.4f} + "
+            f"{MIN_GAIN:.4f}"
             )
 
-        print(
-            f"Challenger -> version {version}"
-        )
+        print(f"Challenger -> version {version}")
+
+        if promoted:
+            print(f"Champion -> version {version}")
+
+        elif previous_champion is not None:
+            print(
+            "Champion unchanged -> version "
+            f"{previous_champion.version}"
+            )
+
+        else:
+            print("Champion not assigned")
 
 
 if __name__ == "__main__":
@@ -347,9 +355,16 @@ if __name__ == "__main__":
         default=0.5,
     )
 
+    parser.add_argument(
+        "--promote",
+        action="store_true",
+        help="Promote challenger to champion if model gate passes",
+        )
+
     args = parser.parse_args()
 
     train_model(
-        c=args.c,
-        threshold=args.threshold,
+    c=args.c,
+    threshold=args.threshold,
+    promote=args.promote,
     )

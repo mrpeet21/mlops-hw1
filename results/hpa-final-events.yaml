@@ -1,0 +1,168 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  count: 1
+  eventTime: null
+  firstTimestamp: "2026-10-18T17:07:33Z"
+  involvedObject:
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    name: cancer-service
+    namespace: default
+    resourceVersion: "65962"
+    uid: 1f59726f-77dd-412d-a274-b97ec68eec4a
+  kind: Event
+  lastTimestamp: "2026-10-18T17:07:33Z"
+  message: 'New size: 4; reason: cpu resource utilization (percentage of request)
+    above target'
+  metadata:
+    creationTimestamp: "2026-10-18T17:07:33Z"
+    name: cancer-service.18dfaeb165e74803
+    namespace: default
+    resourceVersion: "65987"
+    uid: 65d39f35-2f2b-4f8f-a314-64adb00d1fb3
+  reason: SuccessfulRescale
+  reportingComponent: horizontal-pod-autoscaler
+  reportingInstance: ""
+  source:
+    component: horizontal-pod-autoscaler
+  type: Normal
+- apiVersion: v1
+  count: 1
+  eventTime: null
+  firstTimestamp: "2026-10-18T17:07:50Z"
+  involvedObject:
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    name: cancer-service
+    namespace: default
+    resourceVersion: "65985"
+    uid: 1f59726f-77dd-412d-a274-b97ec68eec4a
+  kind: Event
+  lastTimestamp: "2026-10-18T17:07:50Z"
+  message: 'New size: 6; reason: cpu resource utilization (percentage of request)
+    above target'
+  metadata:
+    creationTimestamp: "2026-10-18T17:07:50Z"
+    name: cancer-service.18dfaeb53ce020f1
+    namespace: default
+    resourceVersion: "66037"
+    uid: 505865f5-2deb-44df-bd79-a3bd93e2d5ff
+  reason: SuccessfulRescale
+  reportingComponent: horizontal-pod-autoscaler
+  reportingInstance: ""
+  source:
+    component: horizontal-pod-autoscaler
+  type: Normal
+- apiVersion: v1
+  count: 7
+  eventTime: null
+  firstTimestamp: "2026-10-18T17:16:52Z"
+  involvedObject:
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    name: cancer-service
+    namespace: default
+    resourceVersion: "66108"
+    uid: 1f59726f-77dd-412d-a274-b97ec68eec4a
+  kind: Event
+  lastTimestamp: "2026-10-18T17:18:23Z"
+  message: 'failed to get cpu utilization: unable to get metrics for resource cpu:
+    unable to fetch metrics from resource metrics API: the server is currently unable
+    to handle the request (get pods.metrics.k8s.io)'
+  metadata:
+    creationTimestamp: "2026-10-18T17:16:52Z"
+    name: cancer-service.18dfaf33964c4c53
+    namespace: default
+    resourceVersion: "66716"
+    uid: c8c040e1-dba7-476a-a675-33572f3d20f1
+  reason: FailedGetResourceMetric
+  reportingComponent: horizontal-pod-autoscaler
+  reportingInstance: ""
+  source:
+    component: horizontal-pod-autoscaler
+  type: Warning
+- apiVersion: v1
+  count: 7
+  eventTime: null
+  firstTimestamp: "2026-10-18T17:16:53Z"
+  involvedObject:
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    name: cancer-service
+    namespace: default
+    resourceVersion: "66108"
+    uid: 1f59726f-77dd-412d-a274-b97ec68eec4a
+  kind: Event
+  lastTimestamp: "2026-10-18T17:18:23Z"
+  message: 'invalid metrics (1 invalid out of 1), first error is: failed to get cpu
+    resource metric value: failed to get cpu utilization: unable to get metrics for
+    resource cpu: unable to fetch metrics from resource metrics API: the server is
+    currently unable to handle the request (get pods.metrics.k8s.io)'
+  metadata:
+    creationTimestamp: "2026-10-18T17:16:53Z"
+    name: cancer-service.18dfaf33a74544e9
+    namespace: default
+    resourceVersion: "66717"
+    uid: d91196a0-4823-4ce2-8f9f-b910663fb435
+  reason: FailedComputeMetricsReplicas
+  reportingComponent: horizontal-pod-autoscaler
+  reportingInstance: ""
+  source:
+    component: horizontal-pod-autoscaler
+  type: Warning
+- apiVersion: v1
+  count: 1
+  eventTime: null
+  firstTimestamp: "2026-10-18T17:25:22Z"
+  involvedObject:
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    name: cancer-service
+    namespace: default
+    resourceVersion: "67194"
+    uid: 1f59726f-77dd-412d-a274-b97ec68eec4a
+  kind: Event
+  lastTimestamp: "2026-10-18T17:25:22Z"
+  message: 'New size: 4; reason: All metrics below target'
+  metadata:
+    creationTimestamp: "2026-10-18T17:25:22Z"
+    name: cancer-service.18dfafaa2bb2238f
+    namespace: default
+    resourceVersion: "67304"
+    uid: dd0a1e0e-5cb5-4635-997e-82bd192de77a
+  reason: SuccessfulRescale
+  reportingComponent: horizontal-pod-autoscaler
+  reportingInstance: ""
+  source:
+    component: horizontal-pod-autoscaler
+  type: Normal
+- apiVersion: v1
+  count: 1
+  eventTime: null
+  firstTimestamp: "2026-10-18T17:25:52Z"
+  involvedObject:
+    apiVersion: autoscaling/v2
+    kind: HorizontalPodAutoscaler
+    name: cancer-service
+    namespace: default
+    resourceVersion: "67349"
+    uid: 1f59726f-77dd-412d-a274-b97ec68eec4a
+  kind: Event
+  lastTimestamp: "2026-10-18T17:25:52Z"
+  message: 'New size: 2; reason: All metrics below target'
+  metadata:
+    creationTimestamp: "2026-10-18T17:25:52Z"
+    name: cancer-service.18dfafb12e60ff25
+    namespace: default
+    resourceVersion: "67372"
+    uid: 70a7e29c-fbd6-419b-bdb1-df4977d5579c
+  reason: SuccessfulRescale
+  reportingComponent: horizontal-pod-autoscaler
+  reportingInstance: ""
+  source:
+    component: horizontal-pod-autoscaler
+  type: Normal
+kind: List
+metadata:
+  resourceVersion: ""
