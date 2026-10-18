@@ -1,7 +1,5 @@
 # Исправления по замечаниям к домашнему заданию № 3
-
-**Дата:** 18 октября 2026 года  
-**Репозиторий:** [mrpeet21/mlops-hw1](https://github.com/mrpeet21/mlops-hw1)  
+ 
 **Ветка:** `fix/hw3-feedback`  
 **Pull Request:** [#4 — Fix HW3 feedback: DVC, MLflow, HPA and CI validation](https://github.com/mrpeet21/mlops-hw1/pull/4)  
 **Исходный отчёт:** [REPORT_3.md](REPORT_3.md)
